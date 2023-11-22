@@ -7,8 +7,8 @@ import "./index.css";
 import { createBrowserRouter } from "react-router-dom";
 import { RouterProvider } from "react-router-dom";
 import Layout from "./Layout.jsx";
-import { Users, loader as usersLoader } from "./pages/Users.jsx";
-import User from "./pages/User.jsx";
+import { Users, userLoader as usersLoader } from "./pages/Users.jsx";
+import User, { loader } from "./pages/User.jsx";
 
 const router = createBrowserRouter([
 	{
@@ -28,13 +28,12 @@ const router = createBrowserRouter([
 	{
 		path: "/users/",
 		element: <Users />,
-    loader: usersLoader,
-		children: [
-			{
-				path: "user/:id",
-				element: <User />,
-			},
-		],
+		loader: usersLoader,
+	},
+	{
+		path: "user/:email",
+		element: <User />,
+		loader: loader
 	},
 ]);
 
